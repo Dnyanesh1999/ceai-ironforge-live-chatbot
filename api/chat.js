@@ -88,6 +88,7 @@ export default async function handler(req, res) {
       sources,
     });
   } catch (error) {
+    console.error("ForgeLine chat request failed:", error?.message || error);
     const missingKey = error.message.includes("GEMINI_API_KEY");
     return res.status(missingKey ? 503 : 502).json({
       error: missingKey
